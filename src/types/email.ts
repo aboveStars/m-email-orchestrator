@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { z } from "zod";
 
 // Email input schema
 export const EmailSchema = z.object({
@@ -40,7 +40,7 @@ export interface SpamResult {
 }
 
 // Priority levels
-export type Priority = 'high' | 'medium' | 'low';
+export type Priority = "high" | "medium" | "low";
 
 // Orchestration result - the final output
 export interface OrchestrationResult {
@@ -52,11 +52,11 @@ export interface OrchestrationResult {
   actions_taken: string[];
   processing_time_ms: number;
   // Multi-language support
-  detected_language?: {
-    code: string;      // ISO 639-1 (e.g., 'en', 'de', 'fr')
-    name: string;      // Full name (e.g., 'English', 'German')
-    confidence: number; // 0-1 confidence
-  };
+  detected_language?: LanguageResult;
+}
+
+export interface LanguageResult {
+  language: string; // ISO 639-1 code (e.g., 'en', 'de', 'fr')
 }
 
 // Individual agent results
@@ -64,11 +64,12 @@ export interface SummarizerResult {
   summary: string;
   keyPoints: string[];
   actionItems: string[];
+  language?: string; // ISO 639-1 code
 }
 
 export interface ReplyResult {
   reply: string;
-  tone: 'formal' | 'casual' | 'neutral';
+  tone: "formal" | "casual" | "neutral";
 }
 
 // API request/response types
