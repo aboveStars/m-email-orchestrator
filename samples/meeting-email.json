@@ -1,0 +1,8 @@
+{
+  "email": {
+    "from": "john@acme.com",
+    "subject": "Q4 Review Meeting - Tuesday 3pm",
+    "body": "Hi team,\n\nLet's meet Tuesday at 3pm in Room 204 to discuss Q4 results. Please confirm attendance.\n\nWe'll be reviewing:\n- Sales performance\n- Customer feedback\n- Goals for Q1\n\nBest regards,\nJohn",
+    "attachments": ["q4-report.pdf"]
+  }
+}

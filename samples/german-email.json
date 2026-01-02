@@ -1,0 +1,8 @@
+{
+  "email": {
+    "from": "hans.mueller@beispiel.de",
+    "subject": "Besprechung am Dienstag um 15 Uhr",
+    "body": "Sehr geehrte Kollegen,\n\nich möchte Sie zu einer Besprechung am Dienstag um 15 Uhr im Konferenzraum B einladen.\n\nWir werden folgende Punkte besprechen:\n- Quartalszahlen\n- Neue Projekte\n- Kundenfeedback\n\nBitte bestätigen Sie Ihre Teilnahme.\n\nMit freundlichen Grüßen,\nHans Müller",
+    "attachments": []
+  }
+}

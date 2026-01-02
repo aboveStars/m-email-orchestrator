@@ -1,0 +1,41 @@
+{
+  "name": "email-orchestrator",
+  "version": "1.0.0",
+  "description": "Master orchestration agent with 4 specialized sub-agents for email workflows",
+  "main": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/api/server.ts",
+    "build": "tsc",
+    "start": "node dist/api/server.js",
+    "process-email": "tsx src/index.ts",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:integration": "vitest run --config vitest.integration.config.ts"
+  },
+  "keywords": [
+    "email",
+    "orchestrator",
+    "ai",
+    "agents",
+    "ollama",
+    "openai"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "chrono-node": "^2.7.7",
+    "dotenv": "^17.2.3",
+    "express": "^4.21.2",
+    "ollama": "^0.5.11",
+    "openai": "^4.77.0",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.10.5",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  }
+}

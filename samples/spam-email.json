@@ -1,0 +1,8 @@
+{
+  "email": {
+    "from": "PayPal Support <security@paypa1-verify.com>",
+    "subject": "URGENT: Your account will be suspended - Verify NOW!",
+    "body": "Dear Valued Customer,\n\nWe detected unusual activity on your account. Your account will be closed within 24 hours if you do not verify your identity immediately.\n\nClick here to verify: http://bit.ly/3xyz123\n\nKindly do the needful and revert back to us urgently.\n\nYour good self must act now to avoid account suspension.\n\nPayPal Security Team",
+    "attachments": []
+  }
+}

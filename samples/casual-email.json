@@ -1,0 +1,8 @@
+{
+  "email": {
+    "from": "sarah@techstartup.io",
+    "subject": "Quick question about the API integration",
+    "body": "Hey!\n\nHope you're doing well! I was looking at the API docs and had a quick question - do you support batch processing for the webhook events?\n\nWe're expecting around 10k events/day and want to make sure we handle them efficiently.\n\nThanks!\nSarah",
+    "attachments": []
+  }
+}
