@@ -120,30 +120,37 @@ export async function processEmail(email: Email): Promise<OrchestrationResult> {
     "⚡ Phase 2: Running parallel agents (Summarizer, Calendar Extractor, Reply Generator)..."
   );
 
-  const tasks: Promise<any>[] = [
-    summarizerAgent.run(email),
-    calendarExtractorAgent.run(email),
-  ];
+  let summaryResult: SummarizerResult = {
+    summary: "",
+    language: undefined,
+    keyPoints: [],
+    actionItems: [],
+  };
+  let calendarEvent: CalendarEvent | null = null;
+  let replyResult: any = null;
+  let replyGenerated = false;
 
-  // Only run reply generation if not spam
-  let replyPromise: Promise<any> | null = null;
   if (spamResult.score < SPAM_THRESHOLD) {
+    const tasks: Promise<any>[] = [
+      summarizerAgent.run(email),
+      calendarExtractorAgent.run(email),
+    ];
+
     console.log(
       `   Detailed classification passed, triggering reply generation...`
     );
-    replyPromise = replyGeneratorAgent.run(email, null); // No summary needed now
+    const replyPromise = replyGeneratorAgent.run(email, null); // No summary needed now
     tasks.push(replyPromise);
-  } else {
-    console.log("   🚫 High spam score detected, skipping reply generation");
-  }
 
-  const results = await Promise.all(tasks);
-  const summaryResult: SummarizerResult = results[0];
-  const calendarEvent: CalendarEvent | null = results[1];
-  let replyResult: any = null;
-
-  if (replyPromise) {
+    const results = await Promise.all(tasks);
+    summaryResult = results[0];
+    calendarEvent = results[1];
     replyResult = results[2];
+    replyGenerated = true; // Mark as generated so we know to log it
+  } else {
+    console.log(
+      "   🚫 High spam score detected, skipping Summarizer, Calendar Extractor, and Reply Generator"
+    );
   }
 
   const languageResult = {
@@ -153,7 +160,9 @@ export async function processEmail(email: Email): Promise<OrchestrationResult> {
     languageResult.language
   );
 
-  console.log(`   ✓ Summary: ${summaryResult.summary.substring(0, 50)}...`);
+  if (summaryResult.summary) {
+    console.log(`   ✓ Summary: ${summaryResult.summary.substring(0, 50)}...`);
+  }
   console.log(`   ✓ Calendar Event: ${calendarEvent ? "Found" : "None"}`);
   console.log(`   ✓ Language: ${displayName} (${languageResult.language})`);
 
