@@ -20,10 +20,11 @@ Master Agent (Orchestrator)
 └── Sub-Agent 4: Calendar Event Extractor (NLP + regex)
 ```
 
-**Execution Strategy**: Hybrid parallel + conditional
+**Execution Strategy**: Sequential gating + Parallel execution
 
-- Phase 1: Summarizer, Spam Detector, Calendar Extractor run in parallel
-- Phase 2: Reply Generator only runs if spam score < 0.5 (uses detected language)
+- Phase 1: **Spam Detector** runs first as a fast gate.
+- Phase 2: If spam score < 0.5, then **Summarizer**, **Calendar Extractor**, and **Reply Generator** run in parallel.
+- If spam score >= 0.5, all other agents are skipped to save resources and time.
 
 ## Quick Start
 
